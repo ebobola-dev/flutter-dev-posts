@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dev_posts/assets/themes/theme_data.dart';
+import 'package:flutter_dev_posts/pages/main/main_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -9,9 +11,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       title: 'Flutter Dev Posts',
-      home: Scaffold(),
+      debugShowCheckedModeBanner: false,
+      theme: getThemeData(context),
+      home: const MainPage(),
     );
   }
 }

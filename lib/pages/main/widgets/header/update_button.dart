@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dev_posts/assets/colors/theme_colors.dart';
@@ -62,7 +60,6 @@ class _UpdateButtonState extends State<UpdateButton>
   }
 
   void _blocListener(BuildContext context, PostsState postsState) {
-    log(_rotateController.status.toString());
     if (postsState.isLoading && !isRepeating) {
       isRepeating = true;
       _rotateController.repeat();

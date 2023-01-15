@@ -7,8 +7,9 @@ ThemeData getThemeData(BuildContext context) => ThemeData.dark().copyWith(
       secondaryHeaderColor: secondaryColor,
       backgroundColor: backgroundColor,
       scaffoldBackgroundColor: backgroundColor,
-      splashColor: primaryColor,
+      splashColor: dividerColor,
       iconTheme: const IconThemeData(color: iconColor),
+      dividerColor: dividerColor,
       textTheme: const TextTheme(
         headline1: TextStyle(
           fontSize: 22.0,
@@ -16,14 +17,14 @@ ThemeData getThemeData(BuildContext context) => ThemeData.dark().copyWith(
           fontFamily: defaultFont,
         ),
         headline2: TextStyle(
-          fontSize: 22.0,
+          fontSize: 20.0,
           fontWeight: FontWeight.bold,
           fontFamily: defaultFont,
         ),
         headline3: TextStyle(
           fontSize: 16.0,
           fontFamily: defaultFont,
-          fontWeight: FontWeight.w400,
+          fontWeight: FontWeight.bold,
         ),
         headline4: TextStyle(
           fontSize: 15.0,
@@ -128,7 +129,7 @@ ThemeData getThemeData(BuildContext context) => ThemeData.dark().copyWith(
         ),
       ),
       cardTheme: CardTheme(
-        color: secondaryColor,
+        color: backgroundColor,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10.0),
         ),
@@ -136,9 +137,10 @@ ThemeData getThemeData(BuildContext context) => ThemeData.dark().copyWith(
       snackBarTheme: SnackBarThemeData(
         backgroundColor: Colors.grey[700],
         contentTextStyle: const TextStyle(
-          fontSize: 15.0,
+          fontSize: 16.0,
           fontFamily: defaultFont,
-          fontWeight: FontWeight.w400,
+          fontWeight: FontWeight.w500,
+          color: textColor,
         ),
       ),
     );

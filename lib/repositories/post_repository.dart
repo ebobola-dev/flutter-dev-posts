@@ -1,4 +1,4 @@
-import 'package:flutter_dev_posts/models/post.dart';
+import 'package:flutter_dev_posts/models/post/post.dart';
 import 'package:flutter_dev_posts/services/reddit_api.dart';
 
 abstract class IPostRepository {

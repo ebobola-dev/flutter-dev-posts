@@ -1,7 +1,8 @@
 import 'dart:developer';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_dev_posts/models/post.dart';
+import 'package:flutter_dev_posts/models/errors/api_error.dart';
+import 'package:flutter_dev_posts/models/post/post.dart';
 import 'package:flutter_dev_posts/repositories/post_repository.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -30,7 +31,7 @@ class PostsBloc extends Bloc<PostsEvent, PostsState> {
 
   Future<void> _onUpdate(_Update event, Emitter<PostsState> emit) async {
     try {
-      if (state.isInitialization || state.isUpdating) return;
+      if (state.isLoading) return;
       emit(state.copyWith(isUpdating: true, error: null));
       final allPosts = await _postRepository.getPosts();
       final localPostIdList = state.postList.map((post) => post.id);
@@ -45,6 +46,24 @@ class PostsBloc extends Bloc<PostsEvent, PostsState> {
         'Posts updated, got ${allPosts.length} posts, new: ${newPosts.length}',
         name: 'PostsBloc[_onUpdate]',
       );
+    } on ApiError catch (e) {
+      log(
+        'ApiError on update post: $e',
+        name: 'PostsBloc[_onUpdate]',
+      );
+      String errorText;
+      if (e is RequestError) {
+        errorText = 'Ошибка запроса';
+        if (e.errorCode != null) {
+          errorText += '. Код: ${e.errorCode}';
+        }
+      } else {
+        errorText = 'При обновлении постов произошла ошибка запроса';
+      }
+      emit(state.copyWith(
+        isUpdating: false,
+        error: errorText,
+      ));
     } catch (e) {
       log(
         'Error on update post: $e',
@@ -52,7 +71,7 @@ class PostsBloc extends Bloc<PostsEvent, PostsState> {
       );
       emit(state.copyWith(
         isUpdating: false,
-        error: 'Произошла какая-то ошибка при обновлении постов',
+        error: 'Произошла непредвиденная ошибка при обновлении постов',
       ));
     }
   }

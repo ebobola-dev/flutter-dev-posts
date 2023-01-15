@@ -16,4 +16,7 @@ class Post with _$Post {
   }) = _Post;
 
   factory Post.fromJson(Map<String, dynamic> json) => _$PostFromJson(json);
+
+  bool get hasImage => imageUrl.isNotEmpty && imageUrl != 'self';
+  bool get hasText => text.isNotEmpty;
 }

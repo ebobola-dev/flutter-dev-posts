@@ -1,1 +1,1 @@
-const screenPadding = 16.0;
+const defaultPadding = 16.0;

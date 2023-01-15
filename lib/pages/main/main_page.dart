@@ -37,7 +37,7 @@ class MainPage extends StatelessWidget {
         ),
         body: SafeArea(
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: screenPadding),
+            padding: EdgeInsets.symmetric(horizontal: defaultPadding),
             child: PostList(),
           ),
         ),

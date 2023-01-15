@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dev_posts/models/post/post.dart';
+import 'package:flutter_dev_posts/pages/post/post_page.dart';
+import 'package:flutter_dev_posts/utils/animated_switch_page.dart';
 
 class PostCard extends StatelessWidget {
   final Post post;
@@ -13,7 +15,12 @@ class PostCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: () => animatedSwitchPage(
+          context,
+          PostPage(
+            postId: post.id,
+          ),
+          routeAnimation: RouteAnimation.slideLeft),
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 8.0),
         decoration: BoxDecoration(
@@ -38,7 +45,7 @@ class PostCard extends StatelessWidget {
             ],
             Flexible(
               child: Text(
-                "(${post.ups}) ${post.title}",
+                post.title,
                 style: Theme.of(context).textTheme.headline3,
               ),
             ),

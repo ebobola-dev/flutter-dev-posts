@@ -13,6 +13,9 @@ class PostsState with _$PostsState {
   }) = _PostsState;
 
   bool get isLoading => isInitialization || isUpdating;
+
+  Post? getPostWithId(String id) =>
+      postList.firstWhereOrNull((post) => post.id == id);
 }
 
 

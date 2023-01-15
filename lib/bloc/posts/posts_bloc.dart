@@ -1,5 +1,5 @@
 import 'dart:developer';
-
+import 'package:collection/collection.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dev_posts/models/errors/api_error.dart';
 import 'package:flutter_dev_posts/models/post/post.dart';
@@ -33,17 +33,20 @@ class PostsBloc extends Bloc<PostsEvent, PostsState> {
     try {
       if (state.isLoading) return;
       emit(state.copyWith(isUpdating: true, error: null));
-      final allPosts = await _postRepository.getPosts();
-      final localPostIdList = state.postList.map((post) => post.id);
-      final newPosts =
-          allPosts.where((post) => !localPostIdList.contains(post.id)).toList();
+      final newPostList = await _postRepository.getPosts();
+      log(
+        'Got ${newPostList.length} posts',
+        name: 'PostsBloc[_onUpdate]',
+      );
+      List<Post> posts = List.from(state.postList);
+      _handleNewPosts(posts, newPostList);
       await Future.delayed(const Duration(seconds: 3));
       emit(state.copyWith(
         isUpdating: false,
-        postList: newPosts + state.postList,
+        postList: posts,
       ));
       log(
-        'Posts updated, got ${allPosts.length} posts, new: ${newPosts.length}',
+        'Posts updated',
         name: 'PostsBloc[_onUpdate]',
       );
     } on ApiError catch (e) {
@@ -74,5 +77,42 @@ class PostsBloc extends Bloc<PostsEvent, PostsState> {
         error: 'Произошла непредвиденная ошибка при обновлении постов',
       ));
     }
+  }
+
+  void _handleNewPosts(List<Post> oldPostList, List<Post> newPostList) {
+    //* Для отладки
+    var changedPostsCount = 0;
+    //*
+
+    //? Ищем среди новых локальные посты и проверяем изменения
+    for (var i = 0; i < oldPostList.length; i++) {
+      final oldPostInNewList = newPostList.firstWhereOrNull(
+        (post) => post.id == oldPostList[i].id,
+      );
+      if (oldPostInNewList != null && oldPostList[i] != oldPostInNewList) {
+        oldPostList[i] = oldPostInNewList;
+        changedPostsCount++;
+      }
+    }
+
+    log(
+      'Changed $changedPostsCount posts',
+      name: 'PostsBloc[_onUpdate]',
+    );
+
+    //? Добавляем в начало списка все новые посты, которых ещё не было
+    final localPostIdList = oldPostList.map((post) => post.id);
+    final newPosts = newPostList
+        .where((post) => !localPostIdList.contains(post.id))
+        .toList();
+    oldPostList.insertAll(
+      0,
+      newPosts,
+    );
+
+    log(
+      'Added ${newPosts.length} new posts',
+      name: 'PostsBloc[_onUpdate]',
+    );
   }
 }

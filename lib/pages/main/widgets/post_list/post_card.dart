@@ -38,7 +38,7 @@ class PostCard extends StatelessWidget {
             ],
             Flexible(
               child: Text(
-                post.title,
+                "(${post.ups}) ${post.title}",
                 style: Theme.of(context).textTheme.headline3,
               ),
             ),

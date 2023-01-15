@@ -10,7 +10,7 @@ _$_Post _$$_PostFromJson(Map<String, dynamic> json) => _$_Post(
       id: json['id'] as String,
       title: json['title'] as String,
       imageUrl: json['thumbnail'] as String,
-      likes: json['ups'] as int,
+      ups: json['ups'] as int,
       text: json['selftext'] as String,
     );
 
@@ -18,6 +18,6 @@ Map<String, dynamic> _$$_PostToJson(_$_Post instance) => <String, dynamic>{
       'id': instance.id,
       'title': instance.title,
       'thumbnail': instance.imageUrl,
-      'ups': instance.likes,
+      'ups': instance.ups,
       'selftext': instance.text,
     };

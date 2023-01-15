@@ -11,7 +11,7 @@ class Post with _$Post {
     required final String id,
     required final String title,
     @JsonKey(name: 'thumbnail') required final String imageUrl,
-    @JsonKey(name: 'ups') required final int likes,
+    required final int ups,
     @JsonKey(name: 'selftext') required final String text,
   }) = _Post;
 

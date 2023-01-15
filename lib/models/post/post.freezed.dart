@@ -24,8 +24,7 @@ mixin _$Post {
   String get title => throw _privateConstructorUsedError;
   @JsonKey(name: 'thumbnail')
   String get imageUrl => throw _privateConstructorUsedError;
-  @JsonKey(name: 'ups')
-  int get likes => throw _privateConstructorUsedError;
+  int get ups => throw _privateConstructorUsedError;
   @JsonKey(name: 'selftext')
   String get text => throw _privateConstructorUsedError;
 
@@ -43,7 +42,7 @@ abstract class $PostCopyWith<$Res> {
       {String id,
       String title,
       @JsonKey(name: 'thumbnail') String imageUrl,
-      @JsonKey(name: 'ups') int likes,
+      int ups,
       @JsonKey(name: 'selftext') String text});
 }
 
@@ -63,7 +62,7 @@ class _$PostCopyWithImpl<$Res, $Val extends Post>
     Object? id = null,
     Object? title = null,
     Object? imageUrl = null,
-    Object? likes = null,
+    Object? ups = null,
     Object? text = null,
   }) {
     return _then(_value.copyWith(
@@ -79,9 +78,9 @@ class _$PostCopyWithImpl<$Res, $Val extends Post>
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
               as String,
-      likes: null == likes
-          ? _value.likes
-          : likes // ignore: cast_nullable_to_non_nullable
+      ups: null == ups
+          ? _value.ups
+          : ups // ignore: cast_nullable_to_non_nullable
               as int,
       text: null == text
           ? _value.text
@@ -101,7 +100,7 @@ abstract class _$$_PostCopyWith<$Res> implements $PostCopyWith<$Res> {
       {String id,
       String title,
       @JsonKey(name: 'thumbnail') String imageUrl,
-      @JsonKey(name: 'ups') int likes,
+      int ups,
       @JsonKey(name: 'selftext') String text});
 }
 
@@ -117,7 +116,7 @@ class __$$_PostCopyWithImpl<$Res> extends _$PostCopyWithImpl<$Res, _$_Post>
     Object? id = null,
     Object? title = null,
     Object? imageUrl = null,
-    Object? likes = null,
+    Object? ups = null,
     Object? text = null,
   }) {
     return _then(_$_Post(
@@ -133,9 +132,9 @@ class __$$_PostCopyWithImpl<$Res> extends _$PostCopyWithImpl<$Res, _$_Post>
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
               as String,
-      likes: null == likes
-          ? _value.likes
-          : likes // ignore: cast_nullable_to_non_nullable
+      ups: null == ups
+          ? _value.ups
+          : ups // ignore: cast_nullable_to_non_nullable
               as int,
       text: null == text
           ? _value.text
@@ -152,7 +151,7 @@ class _$_Post extends _Post {
       {required this.id,
       required this.title,
       @JsonKey(name: 'thumbnail') required this.imageUrl,
-      @JsonKey(name: 'ups') required this.likes,
+      required this.ups,
       @JsonKey(name: 'selftext') required this.text})
       : super._();
 
@@ -166,15 +165,14 @@ class _$_Post extends _Post {
   @JsonKey(name: 'thumbnail')
   final String imageUrl;
   @override
-  @JsonKey(name: 'ups')
-  final int likes;
+  final int ups;
   @override
   @JsonKey(name: 'selftext')
   final String text;
 
   @override
   String toString() {
-    return 'Post(id: $id, title: $title, imageUrl: $imageUrl, likes: $likes, text: $text)';
+    return 'Post(id: $id, title: $title, imageUrl: $imageUrl, ups: $ups, text: $text)';
   }
 
   @override
@@ -186,14 +184,13 @@ class _$_Post extends _Post {
             (identical(other.title, title) || other.title == title) &&
             (identical(other.imageUrl, imageUrl) ||
                 other.imageUrl == imageUrl) &&
-            (identical(other.likes, likes) || other.likes == likes) &&
+            (identical(other.ups, ups) || other.ups == ups) &&
             (identical(other.text, text) || other.text == text));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, id, title, imageUrl, likes, text);
+  int get hashCode => Object.hash(runtimeType, id, title, imageUrl, ups, text);
 
   @JsonKey(ignore: true)
   @override
@@ -214,7 +211,7 @@ abstract class _Post extends Post {
       {required final String id,
       required final String title,
       @JsonKey(name: 'thumbnail') required final String imageUrl,
-      @JsonKey(name: 'ups') required final int likes,
+      required final int ups,
       @JsonKey(name: 'selftext') required final String text}) = _$_Post;
   _Post._() : super._();
 
@@ -228,8 +225,7 @@ abstract class _Post extends Post {
   @JsonKey(name: 'thumbnail')
   String get imageUrl;
   @override
-  @JsonKey(name: 'ups')
-  int get likes;
+  int get ups;
   @override
   @JsonKey(name: 'selftext')
   String get text;

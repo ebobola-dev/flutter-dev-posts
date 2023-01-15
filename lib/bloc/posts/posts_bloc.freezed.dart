@@ -37,20 +37,20 @@ mixin _$PostsEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_InitEvent value) init,
-    required TResult Function(_UpdateEvent value) update,
+    required TResult Function(_Init value) init,
+    required TResult Function(_Update value) update,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_InitEvent value)? init,
-    TResult? Function(_UpdateEvent value)? update,
+    TResult? Function(_Init value)? init,
+    TResult? Function(_Update value)? update,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_InitEvent value)? init,
-    TResult Function(_UpdateEvent value)? update,
+    TResult Function(_Init value)? init,
+    TResult Function(_Update value)? update,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -75,25 +75,23 @@ class _$PostsEventCopyWithImpl<$Res, $Val extends PostsEvent>
 }
 
 /// @nodoc
-abstract class _$$_InitEventCopyWith<$Res> {
-  factory _$$_InitEventCopyWith(
-          _$_InitEvent value, $Res Function(_$_InitEvent) then) =
-      __$$_InitEventCopyWithImpl<$Res>;
+abstract class _$$_InitCopyWith<$Res> {
+  factory _$$_InitCopyWith(_$_Init value, $Res Function(_$_Init) then) =
+      __$$_InitCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_InitEventCopyWithImpl<$Res>
-    extends _$PostsEventCopyWithImpl<$Res, _$_InitEvent>
-    implements _$$_InitEventCopyWith<$Res> {
-  __$$_InitEventCopyWithImpl(
-      _$_InitEvent _value, $Res Function(_$_InitEvent) _then)
+class __$$_InitCopyWithImpl<$Res>
+    extends _$PostsEventCopyWithImpl<$Res, _$_Init>
+    implements _$$_InitCopyWith<$Res> {
+  __$$_InitCopyWithImpl(_$_Init _value, $Res Function(_$_Init) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_InitEvent implements _InitEvent {
-  const _$_InitEvent();
+class _$_Init implements _Init {
+  const _$_Init();
 
   @override
   String toString() {
@@ -103,7 +101,7 @@ class _$_InitEvent implements _InitEvent {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_InitEvent);
+        (other.runtimeType == runtimeType && other is _$_Init);
   }
 
   @override
@@ -143,8 +141,8 @@ class _$_InitEvent implements _InitEvent {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_InitEvent value) init,
-    required TResult Function(_UpdateEvent value) update,
+    required TResult Function(_Init value) init,
+    required TResult Function(_Update value) update,
   }) {
     return init(this);
   }
@@ -152,8 +150,8 @@ class _$_InitEvent implements _InitEvent {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_InitEvent value)? init,
-    TResult? Function(_UpdateEvent value)? update,
+    TResult? Function(_Init value)? init,
+    TResult? Function(_Update value)? update,
   }) {
     return init?.call(this);
   }
@@ -161,8 +159,8 @@ class _$_InitEvent implements _InitEvent {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_InitEvent value)? init,
-    TResult Function(_UpdateEvent value)? update,
+    TResult Function(_Init value)? init,
+    TResult Function(_Update value)? update,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -172,30 +170,28 @@ class _$_InitEvent implements _InitEvent {
   }
 }
 
-abstract class _InitEvent implements PostsEvent {
-  const factory _InitEvent() = _$_InitEvent;
+abstract class _Init implements PostsEvent {
+  const factory _Init() = _$_Init;
 }
 
 /// @nodoc
-abstract class _$$_UpdateEventCopyWith<$Res> {
-  factory _$$_UpdateEventCopyWith(
-          _$_UpdateEvent value, $Res Function(_$_UpdateEvent) then) =
-      __$$_UpdateEventCopyWithImpl<$Res>;
+abstract class _$$_UpdateCopyWith<$Res> {
+  factory _$$_UpdateCopyWith(_$_Update value, $Res Function(_$_Update) then) =
+      __$$_UpdateCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_UpdateEventCopyWithImpl<$Res>
-    extends _$PostsEventCopyWithImpl<$Res, _$_UpdateEvent>
-    implements _$$_UpdateEventCopyWith<$Res> {
-  __$$_UpdateEventCopyWithImpl(
-      _$_UpdateEvent _value, $Res Function(_$_UpdateEvent) _then)
+class __$$_UpdateCopyWithImpl<$Res>
+    extends _$PostsEventCopyWithImpl<$Res, _$_Update>
+    implements _$$_UpdateCopyWith<$Res> {
+  __$$_UpdateCopyWithImpl(_$_Update _value, $Res Function(_$_Update) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_UpdateEvent implements _UpdateEvent {
-  const _$_UpdateEvent();
+class _$_Update implements _Update {
+  const _$_Update();
 
   @override
   String toString() {
@@ -205,7 +201,7 @@ class _$_UpdateEvent implements _UpdateEvent {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_UpdateEvent);
+        (other.runtimeType == runtimeType && other is _$_Update);
   }
 
   @override
@@ -245,8 +241,8 @@ class _$_UpdateEvent implements _UpdateEvent {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_InitEvent value) init,
-    required TResult Function(_UpdateEvent value) update,
+    required TResult Function(_Init value) init,
+    required TResult Function(_Update value) update,
   }) {
     return update(this);
   }
@@ -254,8 +250,8 @@ class _$_UpdateEvent implements _UpdateEvent {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_InitEvent value)? init,
-    TResult? Function(_UpdateEvent value)? update,
+    TResult? Function(_Init value)? init,
+    TResult? Function(_Update value)? update,
   }) {
     return update?.call(this);
   }
@@ -263,8 +259,8 @@ class _$_UpdateEvent implements _UpdateEvent {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_InitEvent value)? init,
-    TResult Function(_UpdateEvent value)? update,
+    TResult Function(_Init value)? init,
+    TResult Function(_Update value)? update,
     required TResult orElse(),
   }) {
     if (update != null) {
@@ -274,8 +270,8 @@ class _$_UpdateEvent implements _UpdateEvent {
   }
 }
 
-abstract class _UpdateEvent implements PostsEvent {
-  const factory _UpdateEvent() = _$_UpdateEvent;
+abstract class _Update implements PostsEvent {
+  const factory _Update() = _$_Update;
 }
 
 /// @nodoc
@@ -397,7 +393,7 @@ class __$$_PostsStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_PostsState extends _PostsState {
-  _$_PostsState(
+  const _$_PostsState(
       {final List<Post> postList = const [],
       this.isUpdating = false,
       this.isInitialization = false,
@@ -458,12 +454,12 @@ class _$_PostsState extends _PostsState {
 }
 
 abstract class _PostsState extends PostsState {
-  factory _PostsState(
+  const factory _PostsState(
       {final List<Post> postList,
       final bool isUpdating,
       final bool isInitialization,
       final String? error}) = _$_PostsState;
-  _PostsState._() : super._();
+  const _PostsState._() : super._();
 
   @override
   List<Post> get postList;

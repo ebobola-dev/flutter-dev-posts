@@ -1,7 +1,4 @@
-import 'package:flutter_dev_posts/models/post.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
-
-part 'posts_state.freezed.dart';
+part of 'posts_bloc.dart';
 
 @freezed
 class PostsState with _$PostsState {

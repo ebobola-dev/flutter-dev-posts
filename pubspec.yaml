@@ -21,5 +21,19 @@ dev_dependencies:
   flutter_lints: ^2.0.0
 
 flutter:
-
   uses-material-design: true
+
+  assets:
+    - assets/fonts/
+    - assets/images/
+    - assets/icons/
+
+  fonts:
+    - family: Cera
+      fonts:
+        - asset: assets/fonts/CeraRoundPro-Thin.otf
+        - asset: assets/fonts/CeraRoundPro-Light.otf
+        - asset: assets/fonts/CeraRoundPro-Regular.otf
+        - asset: assets/fonts/CeraRoundPro-Medium.otf
+        - asset: assets/fonts/CeraRoundPro-Bold.otf
+        - weight: 400

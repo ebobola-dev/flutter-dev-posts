@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dev_posts/bloc/posts/posts_bloc.dart';
 import 'package:flutter_dev_posts/repositories/post_repository.dart';
+import 'package:flutter_dev_posts/services/cache_images.dart';
 import 'package:flutter_dev_posts/services/reddit_api.dart';
 import 'package:provider/provider.dart';
 
@@ -23,11 +24,15 @@ class AppProviders extends StatelessWidget {
         Provider(
           create: (context) => PostRepository(context.read<RedditApi>()),
         ),
+        Provider(
+          create: (context) => CacheImages(context.read<RedditApi>()),
+        ),
       ],
       child: MultiBlocProvider(
         providers: [
           BlocProvider(
-            create: (context) => PostsBloc(context.read<PostRepository>()),
+            create: (context) => PostsBloc(
+                context.read<PostRepository>(), context.read<CacheImages>()),
           ),
         ],
         child: child,

@@ -49,7 +49,7 @@ class PostPage extends StatelessWidget {
                                 children: [
                                   const SizedBox(height: defaultPadding),
                                   if (post.hasImage) ...[
-                                    PostImage(url: post.imageUrl),
+                                    PostImage(post: post),
                                     const SizedBox(height: defaultPadding),
                                   ],
                                   Row(
@@ -80,7 +80,7 @@ class PostPage extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.stretch,
                               children: [
                                 if (post.hasImage) ...[
-                                  PostImage(url: post.imageUrl),
+                                  PostImage(post: post),
                                   const SizedBox(width: defaultPadding),
                                 ],
                                 Flexible(

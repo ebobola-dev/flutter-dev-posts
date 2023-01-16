@@ -22,13 +22,14 @@ class PostAdapter extends TypeAdapter<Post> {
       imageUrl: fields[2] as String,
       ups: fields[3] as int,
       text: fields[4] as String,
+      cachedImagePath: fields[5] as String?,
     );
   }
 
   @override
   void write(BinaryWriter writer, Post obj) {
     writer
-      ..writeByte(5)
+      ..writeByte(6)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -38,7 +39,9 @@ class PostAdapter extends TypeAdapter<Post> {
       ..writeByte(3)
       ..write(obj.ups)
       ..writeByte(4)
-      ..write(obj.text);
+      ..write(obj.text)
+      ..writeByte(5)
+      ..write(obj.cachedImagePath);
   }
 
   @override
@@ -62,6 +65,7 @@ _$_Post _$$_PostFromJson(Map<String, dynamic> json) => _$_Post(
       imageUrl: json['thumbnail'] as String,
       ups: json['ups'] as int,
       text: json['selftext'] as String,
+      cachedImagePath: json['cachedImagePath'] as String?,
     );
 
 Map<String, dynamic> _$$_PostToJson(_$_Post instance) => <String, dynamic>{
@@ -70,4 +74,5 @@ Map<String, dynamic> _$$_PostToJson(_$_Post instance) => <String, dynamic>{
       'thumbnail': instance.imageUrl,
       'ups': instance.ups,
       'selftext': instance.text,
+      'cachedImagePath': instance.cachedImagePath,
     };

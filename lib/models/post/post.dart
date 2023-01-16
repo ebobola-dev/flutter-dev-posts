@@ -15,6 +15,7 @@ class Post with _$Post {
     @HiveField(2) @JsonKey(name: 'thumbnail') required final String imageUrl,
     @HiveField(3) required final int ups,
     @HiveField(4) @JsonKey(name: 'selftext') required final String text,
+    @HiveField(5) final String? cachedImagePath,
   }) = _Post;
 
   factory Post.fromJson(Map<String, dynamic> json) => _$PostFromJson(json);
@@ -22,6 +23,7 @@ class Post with _$Post {
   bool get hasImage =>
       imageUrl.isNotEmpty && !['self', "default"].contains(imageUrl);
   bool get hasText => text.isNotEmpty;
+  bool get imageCached => cachedImagePath != null;
 
   static String get boxName => "PostBox";
 }

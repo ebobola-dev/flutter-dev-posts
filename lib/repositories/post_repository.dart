@@ -2,7 +2,7 @@ import 'package:flutter_dev_posts/models/post/post.dart';
 import 'package:flutter_dev_posts/services/reddit_api.dart';
 
 abstract class IPostRepository {
-  Future<void> getPosts();
+  Future<List<Post>> getPosts();
 }
 
 class PostRepository implements IPostRepository {

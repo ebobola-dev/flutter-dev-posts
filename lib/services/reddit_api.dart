@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'dart:typed_data';
 
 import 'package:dio/dio.dart';
 import 'package:flutter_dev_posts/models/errors/api_error.dart';
@@ -26,6 +27,29 @@ class RedditApi {
       log(
         'Error on get posts from json: $e',
         name: 'RedditApi[findPosts]',
+      );
+      throw e is RequestError ? throw e : ApiError.unhandledError(e.toString());
+    }
+  }
+
+  Future<Uint8List> getImage(String imageUrl) async {
+    try {
+      final response = await _dio.get(
+        imageUrl,
+        options: Options(responseType: ResponseType.bytes),
+      );
+      if (response.statusCode != 200) {
+        log(
+          'Request error on get image: ${response.statusCode}',
+          name: 'RedditApi[findPosts]',
+        );
+        throw ApiError.requestError(response.statusCode);
+      }
+      return response.data;
+    } catch (e) {
+      log(
+        'Error on get image from url: $e',
+        name: 'RedditApi[getImage]',
       );
       throw e is RequestError ? throw e : ApiError.unhandledError(e.toString());
     }

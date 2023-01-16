@@ -32,6 +32,8 @@ mixin _$Post {
   @HiveField(4)
   @JsonKey(name: 'selftext')
   String get text => throw _privateConstructorUsedError;
+  @HiveField(5)
+  String? get cachedImagePath => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -48,7 +50,8 @@ abstract class $PostCopyWith<$Res> {
       @HiveField(1) String title,
       @HiveField(2) @JsonKey(name: 'thumbnail') String imageUrl,
       @HiveField(3) int ups,
-      @HiveField(4) @JsonKey(name: 'selftext') String text});
+      @HiveField(4) @JsonKey(name: 'selftext') String text,
+      @HiveField(5) String? cachedImagePath});
 }
 
 /// @nodoc
@@ -69,6 +72,7 @@ class _$PostCopyWithImpl<$Res, $Val extends Post>
     Object? imageUrl = null,
     Object? ups = null,
     Object? text = null,
+    Object? cachedImagePath = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -91,6 +95,10 @@ class _$PostCopyWithImpl<$Res, $Val extends Post>
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
               as String,
+      cachedImagePath: freezed == cachedImagePath
+          ? _value.cachedImagePath
+          : cachedImagePath // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -106,7 +114,8 @@ abstract class _$$_PostCopyWith<$Res> implements $PostCopyWith<$Res> {
       @HiveField(1) String title,
       @HiveField(2) @JsonKey(name: 'thumbnail') String imageUrl,
       @HiveField(3) int ups,
-      @HiveField(4) @JsonKey(name: 'selftext') String text});
+      @HiveField(4) @JsonKey(name: 'selftext') String text,
+      @HiveField(5) String? cachedImagePath});
 }
 
 /// @nodoc
@@ -123,6 +132,7 @@ class __$$_PostCopyWithImpl<$Res> extends _$PostCopyWithImpl<$Res, _$_Post>
     Object? imageUrl = null,
     Object? ups = null,
     Object? text = null,
+    Object? cachedImagePath = freezed,
   }) {
     return _then(_$_Post(
       id: null == id
@@ -145,6 +155,10 @@ class __$$_PostCopyWithImpl<$Res> extends _$PostCopyWithImpl<$Res, _$_Post>
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
               as String,
+      cachedImagePath: freezed == cachedImagePath
+          ? _value.cachedImagePath
+          : cachedImagePath // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -157,7 +171,8 @@ class _$_Post extends _Post {
       @HiveField(1) required this.title,
       @HiveField(2) @JsonKey(name: 'thumbnail') required this.imageUrl,
       @HiveField(3) required this.ups,
-      @HiveField(4) @JsonKey(name: 'selftext') required this.text})
+      @HiveField(4) @JsonKey(name: 'selftext') required this.text,
+      @HiveField(5) this.cachedImagePath})
       : super._();
 
   factory _$_Post.fromJson(Map<String, dynamic> json) => _$$_PostFromJson(json);
@@ -179,10 +194,13 @@ class _$_Post extends _Post {
   @HiveField(4)
   @JsonKey(name: 'selftext')
   final String text;
+  @override
+  @HiveField(5)
+  final String? cachedImagePath;
 
   @override
   String toString() {
-    return 'Post(id: $id, title: $title, imageUrl: $imageUrl, ups: $ups, text: $text)';
+    return 'Post(id: $id, title: $title, imageUrl: $imageUrl, ups: $ups, text: $text, cachedImagePath: $cachedImagePath)';
   }
 
   @override
@@ -195,12 +213,15 @@ class _$_Post extends _Post {
             (identical(other.imageUrl, imageUrl) ||
                 other.imageUrl == imageUrl) &&
             (identical(other.ups, ups) || other.ups == ups) &&
-            (identical(other.text, text) || other.text == text));
+            (identical(other.text, text) || other.text == text) &&
+            (identical(other.cachedImagePath, cachedImagePath) ||
+                other.cachedImagePath == cachedImagePath));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, title, imageUrl, ups, text);
+  int get hashCode =>
+      Object.hash(runtimeType, id, title, imageUrl, ups, text, cachedImagePath);
 
   @JsonKey(ignore: true)
   @override
@@ -218,18 +239,12 @@ class _$_Post extends _Post {
 
 abstract class _Post extends Post {
   factory _Post(
-      {@HiveField(0)
-          required final String id,
-      @HiveField(1)
-          required final String title,
-      @HiveField(2)
-      @JsonKey(name: 'thumbnail')
-          required final String imageUrl,
-      @HiveField(3)
-          required final int ups,
-      @HiveField(4)
-      @JsonKey(name: 'selftext')
-          required final String text}) = _$_Post;
+      {@HiveField(0) required final String id,
+      @HiveField(1) required final String title,
+      @HiveField(2) @JsonKey(name: 'thumbnail') required final String imageUrl,
+      @HiveField(3) required final int ups,
+      @HiveField(4) @JsonKey(name: 'selftext') required final String text,
+      @HiveField(5) final String? cachedImagePath}) = _$_Post;
   _Post._() : super._();
 
   factory _Post.fromJson(Map<String, dynamic> json) = _$_Post.fromJson;
@@ -251,6 +266,9 @@ abstract class _Post extends Post {
   @HiveField(4)
   @JsonKey(name: 'selftext')
   String get text;
+  @override
+  @HiveField(5)
+  String? get cachedImagePath;
   @override
   @JsonKey(ignore: true)
   _$$_PostCopyWith<_$_Post> get copyWith => throw _privateConstructorUsedError;

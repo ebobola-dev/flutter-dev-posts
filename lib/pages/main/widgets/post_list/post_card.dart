@@ -35,7 +35,7 @@ class PostCard extends StatelessWidget {
         child: Row(
           children: [
             if (post.hasImage) ...[
-              PostImage(url: post.imageUrl),
+              PostImage(post: post),
               const SizedBox(width: 8.0),
             ],
             Flexible(

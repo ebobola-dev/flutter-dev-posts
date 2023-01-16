@@ -20,11 +20,16 @@ Post _$PostFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Post {
+  @HiveField(0)
   String get id => throw _privateConstructorUsedError;
+  @HiveField(1)
   String get title => throw _privateConstructorUsedError;
+  @HiveField(2)
   @JsonKey(name: 'thumbnail')
   String get imageUrl => throw _privateConstructorUsedError;
+  @HiveField(3)
   int get ups => throw _privateConstructorUsedError;
+  @HiveField(4)
   @JsonKey(name: 'selftext')
   String get text => throw _privateConstructorUsedError;
 
@@ -39,11 +44,11 @@ abstract class $PostCopyWith<$Res> {
       _$PostCopyWithImpl<$Res, Post>;
   @useResult
   $Res call(
-      {String id,
-      String title,
-      @JsonKey(name: 'thumbnail') String imageUrl,
-      int ups,
-      @JsonKey(name: 'selftext') String text});
+      {@HiveField(0) String id,
+      @HiveField(1) String title,
+      @HiveField(2) @JsonKey(name: 'thumbnail') String imageUrl,
+      @HiveField(3) int ups,
+      @HiveField(4) @JsonKey(name: 'selftext') String text});
 }
 
 /// @nodoc
@@ -97,11 +102,11 @@ abstract class _$$_PostCopyWith<$Res> implements $PostCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {String id,
-      String title,
-      @JsonKey(name: 'thumbnail') String imageUrl,
-      int ups,
-      @JsonKey(name: 'selftext') String text});
+      {@HiveField(0) String id,
+      @HiveField(1) String title,
+      @HiveField(2) @JsonKey(name: 'thumbnail') String imageUrl,
+      @HiveField(3) int ups,
+      @HiveField(4) @JsonKey(name: 'selftext') String text});
 }
 
 /// @nodoc
@@ -148,25 +153,30 @@ class __$$_PostCopyWithImpl<$Res> extends _$PostCopyWithImpl<$Res, _$_Post>
 @JsonSerializable()
 class _$_Post extends _Post {
   _$_Post(
-      {required this.id,
-      required this.title,
-      @JsonKey(name: 'thumbnail') required this.imageUrl,
-      required this.ups,
-      @JsonKey(name: 'selftext') required this.text})
+      {@HiveField(0) required this.id,
+      @HiveField(1) required this.title,
+      @HiveField(2) @JsonKey(name: 'thumbnail') required this.imageUrl,
+      @HiveField(3) required this.ups,
+      @HiveField(4) @JsonKey(name: 'selftext') required this.text})
       : super._();
 
   factory _$_Post.fromJson(Map<String, dynamic> json) => _$$_PostFromJson(json);
 
   @override
+  @HiveField(0)
   final String id;
   @override
+  @HiveField(1)
   final String title;
   @override
+  @HiveField(2)
   @JsonKey(name: 'thumbnail')
   final String imageUrl;
   @override
+  @HiveField(3)
   final int ups;
   @override
+  @HiveField(4)
   @JsonKey(name: 'selftext')
   final String text;
 
@@ -208,25 +218,37 @@ class _$_Post extends _Post {
 
 abstract class _Post extends Post {
   factory _Post(
-      {required final String id,
-      required final String title,
-      @JsonKey(name: 'thumbnail') required final String imageUrl,
-      required final int ups,
-      @JsonKey(name: 'selftext') required final String text}) = _$_Post;
+      {@HiveField(0)
+          required final String id,
+      @HiveField(1)
+          required final String title,
+      @HiveField(2)
+      @JsonKey(name: 'thumbnail')
+          required final String imageUrl,
+      @HiveField(3)
+          required final int ups,
+      @HiveField(4)
+      @JsonKey(name: 'selftext')
+          required final String text}) = _$_Post;
   _Post._() : super._();
 
   factory _Post.fromJson(Map<String, dynamic> json) = _$_Post.fromJson;
 
   @override
+  @HiveField(0)
   String get id;
   @override
+  @HiveField(1)
   String get title;
   @override
+  @HiveField(2)
   @JsonKey(name: 'thumbnail')
   String get imageUrl;
   @override
+  @HiveField(3)
   int get ups;
   @override
+  @HiveField(4)
   @JsonKey(name: 'selftext')
   String get text;
   @override

@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dev_posts/assets/themes/paddings.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dev_posts/bloc/posts/posts_bloc.dart';
-import 'package:flutter_dev_posts/pages/post/widgets/image.dart';
+import 'package:flutter_dev_posts/pages/post/widgets/post_text.dart';
+import 'package:flutter_dev_posts/widgets/post_image.dart';
 import 'package:flutter_dev_posts/pages/post/widgets/ups.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -65,18 +66,11 @@ class PostPage extends StatelessWidget {
                                       ),
                                       const SizedBox(width: defaultPadding),
                                       UpsWidget(ups: post.ups),
-                                      if (post.hasImage)
-                                        const SizedBox(
-                                            width: defaultPadding / 2),
                                     ],
                                   ),
                                   if (post.hasText) ...[
                                     const SizedBox(height: defaultPadding),
-                                    Text(
-                                      post.text,
-                                      style:
-                                          Theme.of(context).textTheme.headline4,
-                                    ),
+                                    PostText(text: post.text),
                                   ],
                                 ],
                               ),
@@ -118,12 +112,7 @@ class PostPage extends StatelessWidget {
                                         if (post.hasText) ...[
                                           const SizedBox(
                                               height: defaultPadding),
-                                          Text(
-                                            post.text,
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .headline4,
-                                          ),
+                                          PostText(text: post.text),
                                         ],
                                       ],
                                     ),

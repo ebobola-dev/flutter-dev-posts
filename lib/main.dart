@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dev_posts/app_providers.dart';
 import 'package:flutter_dev_posts/assets/themes/theme_data.dart';
+import 'package:flutter_dev_posts/models/post/post.dart';
 import 'package:flutter_dev_posts/pages/main/main_page.dart';
 import 'package:get/get.dart';
+import 'package:hive_flutter/adapters.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Hive.initFlutter();
+  Hive.registerAdapter(PostAdapter());
+  await Hive.openBox<Post>(Post.boxName);
+
   runApp(const AppProviders(child: MyApp()));
 }
 

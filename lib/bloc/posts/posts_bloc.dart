@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'package:collection/collection.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dev_posts/hive/boxes.dart';
 import 'package:flutter_dev_posts/models/errors/api_error.dart';
 import 'package:flutter_dev_posts/models/post/post.dart';
 import 'package:flutter_dev_posts/repositories/post_repository.dart';
@@ -20,13 +21,17 @@ class PostsBloc extends Bloc<PostsEvent, PostsState> {
   }
 
   Future<void> _onInit(_Init event, Emitter<PostsState> emit) async {
+    emit(state.copyWith(isInitialization: true));
+    final postBox = Boxes.getPostBox();
     log(
-      'initialization posts...',
+      'Read ${postBox.values.length} posts from local DB',
       name: 'PostsBloc[_onInit]',
     );
-    emit(state.copyWith(isInitialization: true, error: null));
     await Future.delayed(const Duration(seconds: 2));
-    emit(state.copyWith(isInitialization: false));
+    emit(state.copyWith(
+      isInitialization: false,
+      postList: postBox.values.toList(),
+    ));
   }
 
   Future<void> _onUpdate(_Update event, Emitter<PostsState> emit) async {
@@ -39,7 +44,7 @@ class PostsBloc extends Bloc<PostsEvent, PostsState> {
         name: 'PostsBloc[_onUpdate]',
       );
       List<Post> posts = List.from(state.postList);
-      _handleNewPosts(posts, newPostList);
+      await _handleNewPosts(posts, newPostList);
       await Future.delayed(const Duration(seconds: 3));
       emit(state.copyWith(
         isUpdating: false,
@@ -79,10 +84,14 @@ class PostsBloc extends Bloc<PostsEvent, PostsState> {
     }
   }
 
-  void _handleNewPosts(List<Post> oldPostList, List<Post> newPostList) {
+  Future<void> _handleNewPosts(
+      List<Post> oldPostList, List<Post> newPostList) async {
     //* Для отладки
     var changedPostsCount = 0;
     //*
+
+    final postBox = Boxes.getPostBox();
+    Map<String, Post> forUpdate = {};
 
     //? Ищем среди новых локальные посты и проверяем изменения
     for (var i = 0; i < oldPostList.length; i++) {
@@ -91,9 +100,12 @@ class PostsBloc extends Bloc<PostsEvent, PostsState> {
       );
       if (oldPostInNewList != null && oldPostList[i] != oldPostInNewList) {
         oldPostList[i] = oldPostInNewList;
+        forUpdate[oldPostInNewList.id] = oldPostInNewList;
         changedPostsCount++;
       }
     }
+    //? Обновляем в бд
+    await postBox.putAll(forUpdate);
 
     log(
       'Changed $changedPostsCount posts',
@@ -109,6 +121,10 @@ class PostsBloc extends Bloc<PostsEvent, PostsState> {
       0,
       newPosts,
     );
+
+    //? Добавляем новые в бд
+    final newPostsMap = {for (var post in newPosts) post.id: post};
+    await postBox.putAll(newPostsMap);
 
     log(
       'Added ${newPosts.length} new posts',

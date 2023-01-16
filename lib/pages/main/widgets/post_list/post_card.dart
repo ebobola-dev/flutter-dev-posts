@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dev_posts/models/post/post.dart';
 import 'package:flutter_dev_posts/pages/post/post_page.dart';
 import 'package:flutter_dev_posts/utils/animated_switch_page.dart';
+import 'package:flutter_dev_posts/widgets/post_image.dart';
 
 class PostCard extends StatelessWidget {
   final Post post;
@@ -34,13 +35,7 @@ class PostCard extends StatelessWidget {
         child: Row(
           children: [
             if (post.hasImage) ...[
-              ClipRRect(
-                borderRadius: BorderRadius.circular(10.0),
-                child: Image.network(
-                  post.imageUrl,
-                  fit: BoxFit.contain,
-                ),
-              ),
+              PostImage(url: post.imageUrl),
               const SizedBox(width: 8.0),
             ],
             Flexible(
